@@ -20,7 +20,7 @@ dynamic getTopAppBar(String title){
       );
 }
 
-dynamic getDrawer(){
+dynamic getDrawer(BuildContext context){
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
@@ -39,20 +39,28 @@ dynamic getDrawer(){
           
         ),
         ListTile(
-          leading: Icon(Icons.category),
-          title: Text('Shop by Categories'),
+          leading: const Icon(Icons.phone_android),
+          title: const Text('Mobiles'),
+          hoverColor: Colors.purpleAccent,
+          onTap: () async{
+            await Navigator.pushNamed(context, '/products');
+          },
+        ),
+       ListTile( 
+          leading: const Icon(Icons.category),
+          title: const Text('Shop by Categories'),
           hoverColor: Colors.purpleAccent,
           onTap: () {},
         ),
         ListTile(
-          leading: Icon(Icons.add_box),
-          title: Text('Orders'),
+          leading: const Icon(Icons.add_box),
+          title: const Text('Orders'),
           hoverColor: Colors.purpleAccent,
           onTap: () {},
         ),
         ListTile(
-          leading: Icon(Icons.contact_page),
-          title: Text('Contact Us'),
+          leading: const Icon(Icons.contact_page),
+          title: const Text('Contact Us'),
           hoverColor: Colors.purpleAccent,
           onTap: () {},
         ),
@@ -103,5 +111,4 @@ dynamic getFloatingButton(BuildContext context){
         );
         //FloatingActionButtonLocation.centerDocked
 }
-
 }

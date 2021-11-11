@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "125883224148",
+    "project_id": "mobile-cafe-app-bc7bb",
+    "storage_bucket": "mobile-cafe-app-bc7bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125883224148:android:7539d6e30f92a6d80c5dc1",
+        "android_client_info": {
+          "package_name": "com.example.mobile_store_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125883224148-58aa9htru4arhi6jmibm6eukc767s4vi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEsdgLBn_2lyCRh5VCTSNc69r1nYDnKRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125883224148-58aa9htru4arhi6jmibm6eukc767s4vi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
