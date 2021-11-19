@@ -79,8 +79,8 @@ dynamic getBottomAppbar(BuildContext context){
           ),
           
           BottomNavigationBarItem(
-            icon: Icon(Icons.person,size: 25,),
-            label: 'Profile',
+            icon: Icon(Icons.login,size: 25,),
+            label: 'Sign up',
           ),
       ],
         currentIndex: selectedIndex,
@@ -94,7 +94,7 @@ dynamic getBottomAppbar(BuildContext context){
           }
           if(selectedIndex==1)
           {
-            await Navigator.pushNamed(context, '/profile');
+            await Navigator.pushNamed(context, '/signup');
           }
         },
       );
