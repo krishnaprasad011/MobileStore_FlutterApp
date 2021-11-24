@@ -13,7 +13,6 @@ void main() {
       '/profile':(context)=>Profile(),
       '/products':(context)=>Products(),
       '/signup':(context)=>Signup(),
-
     },
   ),
   );
