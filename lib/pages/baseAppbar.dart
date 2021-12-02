@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class BaseAppBar{
@@ -11,12 +12,13 @@ class BaseAppBar{
 dynamic getTopAppBar(String title){
   return AppBar(
         title: Text(title), 
+        elevation: null,
         actions: [
           IconButton(
             onPressed: (){}, icon: const Icon(Icons.search)),
           IconButton(onPressed: (){}, icon: const Icon(Icons.favorite))
         ],
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.blue[900],
       );
 }
 
@@ -27,7 +29,7 @@ dynamic getDrawer(BuildContext context){
       children: <Widget>[
         DrawerHeader(
           decoration: BoxDecoration(
-            color: Colors.deepPurple,
+            color: Colors.blue[900],
           ),
           child: Text(
             'John K',
@@ -41,7 +43,7 @@ dynamic getDrawer(BuildContext context){
         ListTile(
           leading: const Icon(Icons.phone_android),
           title: const Text('Mobiles'),
-          hoverColor: Colors.purpleAccent,
+          hoverColor: Colors.blueAccent,
           onTap: () async{
             await Navigator.pushNamed(context, '/products');
           },
@@ -49,19 +51,19 @@ dynamic getDrawer(BuildContext context){
        ListTile( 
           leading: const Icon(Icons.category),
           title: const Text('Shop by Categories'),
-          hoverColor: Colors.purpleAccent,
+          hoverColor: Colors.blueAccent,
           onTap: () {},
         ),
         ListTile(
           leading: const Icon(Icons.add_box),
           title: const Text('Orders'),
-          hoverColor: Colors.purpleAccent,
+          hoverColor: Colors.blueAccent,
           onTap: () {},
         ),
         ListTile(
           leading: const Icon(Icons.contact_page),
           title: const Text('Contact Us'),
-          hoverColor: Colors.purpleAccent,
+          hoverColor: Colors.blueAccent,
           onTap: () {},
         ),
       ],
@@ -84,7 +86,7 @@ dynamic getBottomAppbar(BuildContext context){
           ),
       ],
         currentIndex: selectedIndex,
-        selectedItemColor: Colors.purple[800],
+        selectedItemColor: Colors.blue[900],
         onTap: (index)async{
           tapedItem(index);
           if(selectedIndex==0)
@@ -102,7 +104,7 @@ dynamic getBottomAppbar(BuildContext context){
   }
 dynamic getFloatingButton(BuildContext context){
   return FloatingActionButton(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.blue[900],
         onPressed: () async{
           await Navigator.pushNamed(context, '/cart');
         } ,

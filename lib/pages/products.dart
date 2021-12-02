@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_store_app/pages/baseAppbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> main()async{
+void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(Products());
@@ -39,7 +39,11 @@ class _ProductsState extends State<Products> {
               .collection('products')
               .snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot ){
-            return ListView(
+            if(snapshot.hasData)
+            {
+              if(snapshot.data!.docs.isNotEmpty)
+              {
+                return ListView(
             children: snapshot.data!.docs.map((e){
           return Card(
             clipBehavior: Clip.antiAlias,
@@ -87,8 +91,14 @@ class _ProductsState extends State<Products> {
           );
         }).toList(),
       );
-          },
-          ) ,
+              }else{
+                return Text('Unable to fetch data');
+              }
+              }else{
+                  return Text('check your internet connection');
+              }
+              },
+          )
       ),
       
             floatingActionButton: BaseAppBar().getFloatingButton(context),
