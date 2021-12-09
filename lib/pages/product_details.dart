@@ -46,10 +46,28 @@ class _Product_detailsState extends State<Product_details> {
                         right: 24.0,
                         bottom: 4.0,
                       ),
-                      child: Text(
+                      child:Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children:[
+                          Flexible(
+                            child: Text(
                         "${docData['brand']} ${docData['model']}  \(${docData['color']}, ${docData['ram']}\)",
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                        
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                       ),
+                          ),
+                          
+                        IconButton(
+                        icon: const Icon(Icons.favorite_outline_rounded),
+                        color: Colors.pink[700],
+                        tooltip: 'Save as Wishlist',
+                        onPressed: () {
+                          
+                                },
+                            ),
+                           
+                      ]) 
+                      
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -77,6 +95,66 @@ class _Product_detailsState extends State<Product_details> {
                         color: Colors.blue[800],
                         
                         )
+                    ),
+                    //SizedBox(height: 20,),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
+                        child: Text("Specification",style: TextStyle(fontWeight:FontWeight.w500, fontSize: 20,),),
+                        ),
+                    Column(
+                      children:<Widget>[
+                        
+                         Padding(
+                        padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+                         child: Table(
+                           children: [
+                             TableRow(
+                               children: [
+                                 Text("OS",style: TextStyle(fontSize: 16,),),
+                                 Text("${docData['os']}",style: TextStyle(fontSize: 16,)),
+                               ]
+                             ),
+                             
+                             TableRow(
+                               children: [
+                                 Text("Processor",style: TextStyle(fontSize: 16,)),
+                                 Text("${docData['processor']}",style: TextStyle(fontSize: 16,)),
+                               ]
+                             ),
+                             TableRow(
+                               children: [
+                                 Text("Camera",style: TextStyle(fontSize: 16,)),
+                                 Text("${docData['camera']}",style: TextStyle(fontSize: 16,)),
+                               ]
+                             ),
+                             TableRow(
+                               children: [
+                                 Text("RAM ",style: TextStyle(fontSize: 16,)),
+                                 Text("${docData['ram']}",style: TextStyle(fontSize: 16,)),
+                               ]
+                             ),
+                             TableRow(
+                               children: [
+                                 Text("ROM ",style: TextStyle(fontSize: 16,)),
+                                 Text("${docData['rom']}",style: TextStyle(fontSize: 16,)),
+                               ]
+                             ),
+                             TableRow(
+                               children: [
+                                 Text("Battery ",style: TextStyle(fontSize: 16,)),
+                                 Text("${docData['battery']}",style: TextStyle(fontSize: 16,)),
+                               ]
+                             ),
+                             TableRow(
+                               children: [
+                                 Text("Color ",style: TextStyle(fontSize: 16,)),
+                                 Text("${docData['color']}",style: TextStyle(fontSize: 16,)),
+                               ]
+                             ),
+                           ],
+                           ),
+                         )
+                        ]
                     ),
                   ]
                 );

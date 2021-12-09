@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_store_app/pages/about.dart';
 import 'package:mobile_store_app/pages/home.dart';
 import 'package:mobile_store_app/pages/cart.dart';
-import 'package:mobile_store_app/pages/product_details.dart';
+import 'package:mobile_store_app/pages/login.dart';
+// import 'package:mobile_store_app/pages/product_details.dart';
 import 'package:mobile_store_app/pages/products.dart';
 import 'package:mobile_store_app/pages/profile.dart';
 import 'package:mobile_store_app/pages/signup.dart';
@@ -19,6 +21,8 @@ void main() {
       '/products':(context)=>Products(),
       '/signup':(context)=>Signup(),
       '/splash':(context)=>Splashscreen(),
+      '/login':(context)=>Login(),
+      '/about':(context)=>AboutPage(),
       //'/productDetails':(context)=>Product_details()
     },
   ),

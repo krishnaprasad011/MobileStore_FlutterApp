@@ -16,8 +16,8 @@ class _CartState extends State<Cart> {
         
       ),
       bottomNavigationBar: BaseAppBar().getBottomAppbar(context),
-      floatingActionButton: BaseAppBar().getFloatingButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+      //floatingActionButton: BaseAppBar().getFloatingButton(context),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }

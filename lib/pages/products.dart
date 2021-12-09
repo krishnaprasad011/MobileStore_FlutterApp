@@ -42,6 +42,7 @@ class _ProductsState extends State<Products> {
       return Card(
         clipBehavior: Clip.antiAlias,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image(image: ResizeImage(NetworkImage(e['img1'].toString()),width: 60,height: 92)),
             ListTile(
@@ -55,16 +56,30 @@ class _ProductsState extends State<Products> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: 
-              
               Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(e['rom']),
-                  Text(e['ram']),
-                  Expanded(child:Text(e['processor']))
+                  
+                   Text(
+                        "\u{20B9} ${e['price']}   |  ",
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(width:5),
+                  Text("${e['rom']}",style: TextStyle(backgroundColor: Colors.grey[200]),),
+                      SizedBox(width:5),
+                  Text("${e['ram']}",style: TextStyle(backgroundColor: Colors.grey[200])),
+                      SizedBox(width:5),
+                  Expanded(child:Text("${e['processor']}",style: TextStyle(backgroundColor: Colors.grey[200])))
                   ,
                 ],
               ),
             ),
+           
+
             ButtonBar(
               alignment: MainAxisAlignment.start,
               children: [

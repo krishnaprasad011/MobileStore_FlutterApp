@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class BaseAppBar{
@@ -22,6 +21,19 @@ dynamic getTopAppBar(String title){
       );
 }
 
+dynamic getTopAppBar2(String title){
+  return AppBar(
+        title: Text(title), 
+        elevation: null,
+        // actions: [
+        //   IconButton(
+        //     onPressed: (){}, icon: const Icon(Icons.search)),
+        //   IconButton(onPressed: (){}, icon: const Icon(Icons.favorite))
+        // ],
+        backgroundColor: Colors.blue[900],
+      );
+}
+
 dynamic getDrawer(BuildContext context){
   return Drawer(
     child: ListView(
@@ -32,7 +44,7 @@ dynamic getDrawer(BuildContext context){
             color: Colors.blue[900],
           ),
           child: Text(
-            'John K',
+            'User ',
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,
@@ -46,25 +58,37 @@ dynamic getDrawer(BuildContext context){
           hoverColor: Colors.blueAccent,
           onTap: () async{
             await Navigator.pushNamed(context, '/products');
+            Navigator.pop(context);
+
           },
         ),
        ListTile( 
-          leading: const Icon(Icons.category),
-          title: const Text('Shop by Categories'),
+          leading: const Icon(Icons.info),
+          title: const Text('About'),
           hoverColor: Colors.blueAccent,
-          onTap: () {},
+          onTap: () async{
+            await Navigator.pushNamed(context, '/about');
+            Navigator.pop(context);
+
+          },
         ),
         ListTile(
           leading: const Icon(Icons.add_box),
           title: const Text('Orders'),
           hoverColor: Colors.blueAccent,
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+
+          },
         ),
         ListTile(
           leading: const Icon(Icons.contact_page),
           title: const Text('Contact Us'),
           hoverColor: Colors.blueAccent,
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+
+          },
         ),
       ],
     ),
@@ -82,7 +106,7 @@ dynamic getBottomAppbar(BuildContext context){
           
           BottomNavigationBarItem(
             icon: Icon(Icons.login,size: 25,),
-            label: 'Sign up',
+            label: 'Log in',
           ),
       ],
         currentIndex: selectedIndex,
@@ -92,11 +116,11 @@ dynamic getBottomAppbar(BuildContext context){
           if(selectedIndex==0)
           {
             
-            await Navigator.pushNamed(context, '/home');
+            //await Navigator.pushNamed(context, '/home');
           }
           if(selectedIndex==1)
           {
-            await Navigator.pushNamed(context, '/signup');
+            await Navigator.pushNamed(context, '/login');
           }
         },
       );
