@@ -12,6 +12,7 @@ class Product_details extends StatefulWidget {
 }
 class _Product_detailsState extends State<Product_details> {
   final CollectionReference _productRef = FirebaseFirestore.instance.collection("products");
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +63,7 @@ class _Product_detailsState extends State<Product_details> {
                         color: Colors.pink[700],
                         tooltip: 'Save as Wishlist',
                         onPressed: () {
-                          
+
                                 },
                             ),
                            

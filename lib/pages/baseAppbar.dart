@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'signout.dart';
 class BaseAppBar{
   int selectedIndex=0;
   
@@ -35,6 +38,14 @@ dynamic getTopAppBar2(String title){
 }
 
 dynamic getDrawer(BuildContext context){
+  // User _usr = FirebaseAuth.instance.currentUser!;
+  // String data="Welcome";
+  // // ignore: unnecessary_null_comparison
+  // if(_usr!=null){
+  //   data=_usr.email!;
+  // }else{
+  //     data="Welcome";
+  // }
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
@@ -44,7 +55,7 @@ dynamic getDrawer(BuildContext context){
             color: Colors.blue[900],
           ),
           child: Text(
-            'User ',
+            "data",
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,
@@ -53,13 +64,21 @@ dynamic getDrawer(BuildContext context){
           
         ),
         ListTile(
+          leading: const Icon(Icons.settings),
+          title: const Text('Profile'),
+          hoverColor: Colors.blueAccent,
+          onTap: () async{
+            await Navigator.pushNamed(context, '/decision');
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
           leading: const Icon(Icons.phone_android),
           title: const Text('Mobiles'),
           hoverColor: Colors.blueAccent,
           onTap: () async{
             await Navigator.pushNamed(context, '/products');
             Navigator.pop(context);
-
           },
         ),
        ListTile( 
@@ -120,7 +139,10 @@ dynamic getBottomAppbar(BuildContext context){
           }
           if(selectedIndex==1)
           {
-            await Navigator.pushNamed(context, '/login');
+            
+            await Navigator.pushNamed(context, '/decision');
+
+            
           }
         },
       );

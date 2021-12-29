@@ -1,5 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_store_app/model/user_model.dart';
 import 'package:mobile_store_app/pages/baseAppbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mobile_store_app/pages/home.dart';
+import 'package:mobile_store_app/pages/login.dart';
 
 
 class RegistrationScreen extends StatefulWidget {
@@ -10,6 +16,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+    final _auth = FirebaseAuth.instance;
+
   
   // string for displaying the error Message
   String? errorMessage;
@@ -35,6 +43,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         autofocus: false,
         controller: firstNameEditingController,
         keyboardType: TextInputType.name,
+        validator: (value) {
+          RegExp regex = new RegExp(r'^.{3,}$');
+          if (value!.isEmpty) {
+            return ("First Name cannot be Empty");
+          }
+          if (!regex.hasMatch(value)) {
+            return ("Enter Valid name(Min. 3 Character)");
+          }
+          return null;
+        },
        
         onSaved: (value) {
           firstNameEditingController.text = value!;
@@ -129,7 +147,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           ),
         ));
 
-    //confirm password field
+ //confirm password field
     final confirmPasswordField = TextFormField(
         autofocus: false,
         controller: confirmPasswordEditingController,
@@ -177,6 +195,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             borderRadius: BorderRadius.circular(10),
           ),
         ));
+
     //signup button
     final signUpButton = Material(
       elevation: 5,
@@ -186,9 +205,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
-            setState(() {
-              _isLoading=true;
-            });
+            signUp(emailEditingController.text, passwordEditingController.text);
           },
           child: Stack(
             children: [
@@ -258,16 +275,70 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
     );
   }
+
+  void signUp(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await _auth
+            .createUserWithEmailAndPassword(email: email, password: password)
+            .then((value) => {postDetailsToFirestore()})
+            .catchError((e) {
+          Fluttertoast.showToast(msg: e!.message);
+        });
+      } on FirebaseAuthException catch (error) {
+        switch (error.code) {
+          case "invalid-email":
+            errorMessage = "Your email address appears to be malformed.";
+            break;
+          case "wrong-password":
+            errorMessage = "Your password is wrong.";
+            break;
+          case "user-not-found":
+            errorMessage = "User with this email doesn't exist.";
+            break;
+          case "user-disabled":
+            errorMessage = "User with this email has been disabled.";
+            break;
+          case "too-many-requests":
+            errorMessage = "Too many requests";
+            break;
+          case "operation-not-allowed":
+            errorMessage = "Signing in with Email and Password is not enabled.";
+            break;
+          default:
+            errorMessage = "An undefined Error happened.";
+        }
+        Fluttertoast.showToast(msg: errorMessage!);
+        print(error.code);
+      }
+    }
+  }
   
-  postDetailsToFirestore() async {
-    
+   postDetailsToFirestore() async {
+    // calling our firestore
+    // calling our user model
+    // sedning these values
 
-  
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
 
-   
+    UserModel userModel = UserModel();
 
-   
+    // writing all the values
+    userModel.email = user!.email;
+    userModel.uid = user.uid;
+    userModel.firstName = firstNameEditingController.text;
+    userModel.secondName = secondNameEditingController.text;
 
-    
+    await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());
+    Fluttertoast.showToast(msg: "Account created successfully :) ");
+
+    Navigator.pushAndRemoveUntil(
+        (context),
+        MaterialPageRoute(builder: (context) => Login(onSigninEm: (User ) {  },)),
+        (route) => false);
   }
 }
