@@ -181,7 +181,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         autofocus: false,
         controller: addressEditingController,
         obscureText: false,
-        
+         validator: (value) {
+          if (value!.isEmpty) {
+            return ("Second Name cannot be Empty");
+          }
+          return null;
+        },
+        onSaved: (value) {
+          addressEditingController.text = value!;
+        },
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           prefixIcon: Padding(
@@ -329,6 +337,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.uid = user.uid;
     userModel.firstName = firstNameEditingController.text;
     userModel.secondName = secondNameEditingController.text;
+    userModel.address = addressEditingController.text;
 
     await firebaseFirestore
         .collection("users")

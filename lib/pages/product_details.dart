@@ -1,7 +1,9 @@
 //import 'dart:js';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_store_app/pages/baseAppbar.dart';
+import 'package:mobile_store_app/pages/cart.dart';
 class Product_details extends StatefulWidget {
   final String pid;
   Product_details({
@@ -12,6 +14,18 @@ class Product_details extends StatefulWidget {
 }
 class _Product_detailsState extends State<Product_details> {
   final CollectionReference _productRef = FirebaseFirestore.instance.collection("products");
+  final CollectionReference _userRef = FirebaseFirestore.instance.collection("users");
+  User user = FirebaseAuth.instance.currentUser!;
+  
+  Future _addToCart() {
+    return _userRef
+        .doc(user.uid)
+        .collection("cart")
+        .doc(widget.pid)
+        .set({"p_id": widget.pid});
+  }
+
+ final SnackBar _snackBar = const SnackBar(content: Text("Product added to the cart"),);
   
   @override
   Widget build(BuildContext context) {
@@ -21,9 +35,9 @@ class _Product_detailsState extends State<Product_details> {
 
       body: Stack(
         children: [
-          FutureBuilder(
+          FutureBuilder<DocumentSnapshot>(
             future: _productRef.doc(widget.pid).get(),
-            builder: (context,AsyncSnapshot<DocumentSnapshot>snapshot){
+            builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                 if(snapshot.hasError){
                 return Scaffold(
                   body:Center(
@@ -90,7 +104,13 @@ class _Product_detailsState extends State<Product_details> {
                         horizontal: 40.0,
                       ),
                       child: RaisedButton.icon(
-                        onPressed: (){}, 
+                        onPressed: () async{
+                          await _addToCart();
+                          ScaffoldMessenger.of(context).showSnackBar(_snackBar);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
+
+
+                        }, 
                         icon: const Icon(Icons.shopping_bag, color: Colors.white,size: 18,), 
                         label: const Text("ADD TO CART", style: TextStyle(color: Colors.white),),
                         color: Colors.blue[800],

@@ -42,9 +42,11 @@ class _ProductsState extends State<Products> {
       return Card(
         clipBehavior: Clip.antiAlias,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image(image: ResizeImage(NetworkImage(e['img1'].toString()),width: 60,height: 92)),
+            Container(
+             child: Image(image: ResizeImage(NetworkImage(e['img1'].toString()),width: 60,height: 92)),
+            ),
             ListTile(
               //leading: Icon(Icons.arrow_drop_down_circle),
               title: Text(e['model'].toString()),

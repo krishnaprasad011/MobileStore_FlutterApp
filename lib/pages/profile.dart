@@ -16,32 +16,138 @@ class Profile extends StatelessWidget {
     onSignOut(null!);
 
   }
+
+
   @override
   Widget build(BuildContext context) {
-    User _usr = FirebaseAuth.instance.currentUser!;
-    return Scaffold(
-      appBar: BaseAppBar().getTopAppBar("Profile"),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            child: Text(_usr.uid),
-          ),
+   User _usr = FirebaseAuth.instance.currentUser!;
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-          Container(
-            child: MaterialButton(
-              onPressed: (){
-                logout(context);
-              },
-              child: Text("LOG OUT"),
-              color: Colors.red,
-              textColor: Colors.white,
-              ),
-          ),
-        ],
-      )
-      
-      
+    return Scaffold(
+        appBar: BaseAppBar().getTopAppBar2("Profile"),
+        backgroundColor: Colors.white,
+        body: FutureBuilder<DocumentSnapshot>(
+        future: users.doc(_usr.uid).get(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+          if (snapshot.hasError) {
+            return const Text("Something went wrong");
+          }
+
+          if (snapshot.hasData && !snapshot.data!.exists) {
+            return const Text("Document does not exist");
+          }
+
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+            return ListView(
+                  children: [
+                    Container(
+                      height: 250,
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 4),
+                      child: Image.network("https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"),
+                      ),
+                      Padding(
+                      padding: const EdgeInsets.only(
+                        top: 24.0,
+                        left: 24.0,
+                        right: 24.0,
+                        bottom: 4.0,
+                      ),
+                      child:Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children:[
+                          Flexible(
+                            child: Text(
+                        "${data['firstName']} ${data['secondName']}",
+                        
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                          ),  
+                      ]) 
+                      
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6.0,
+                        horizontal: 24.0,
+                      ),
+                      child: Text(
+                        "${data['email']}",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.blue[800],
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6.0,
+                        horizontal: 24.0,
+                      ),
+                      child: Text(
+                        "${data['address']}",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.blue[800],
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6.0,
+                        horizontal: 40.0,
+                      ),
+                      child:  MaterialButton(
+                         onPressed: (){
+                          logout(context);
+                        },
+                          child: Text("LOG OUT"),
+                      color: Colors.red,
+                        textColor: Colors.white,
+                      ),),
+                    //SizedBox(height: 20,),
+                  ]
+                );
+            // Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+                
+            //     Text("Full Name: ${data['firstName']} ${data['secondName']}"),
+            //     Text("Email: ${data['email']}"),
+            //     MaterialButton(
+            //       onPressed: (){
+            //     logout(context);
+            //   },
+            //   child: Text("LOG OUT"),
+            //   color: Colors.red,
+            //   textColor: Colors.white,
+            //   ),
+
+            //   ],
+            // );
+          }
+
+          return const Text("loading");
+          // 
+        },
+        
+      ),
     );
   }
 }
+
+
+// Container(
+//             child: MaterialButton(
+//               onPressed: (){
+//                 logout(context);
+//               },
+//               child: Text("LOG OUT"),
+//               color: Colors.red,
+//               textColor: Colors.white,
+//               ),
+//           ),

@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     initialRoute: '/splash',
     routes: {
       '/home':(context)=>Home(),
-      '/cart':(context)=>Cart(),
+      '/cart':(context)=> Cart(),
       '/profile':(context)=>Profile(onSignOut: (User) { },),
       '/products':(context)=>Products(),
       '/splash':(context)=>const Splashscreen(),
