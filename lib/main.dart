@@ -6,6 +6,7 @@ import 'package:mobile_store_app/pages/decision_tree.dart';
 import 'package:mobile_store_app/pages/home.dart';
 import 'package:mobile_store_app/pages/cart.dart';
 import 'package:mobile_store_app/pages/login.dart';
+import 'package:mobile_store_app/pages/order.dart';
 // import 'package:mobile_store_app/pages/product_details.dart';
 import 'package:mobile_store_app/pages/products.dart';
 import 'package:mobile_store_app/pages/profile.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
       '/login':(context)=>Login(onSigninEm: (User) {  },),
       '/decision':(context)=>decisionTree(),
       '/about':(context)=>AboutPage(),
+      '/orders':(context)=>Order(),
       //'/productDetails':(context)=>Product_details()
     },
   );

@@ -16,9 +16,8 @@ dynamic getTopAppBar(String title){
         title: Text(title), 
         elevation: null,
         actions: [
-          IconButton(
-            onPressed: (){}, icon: const Icon(Icons.search)),
-          IconButton(onPressed: (){}, icon: const Icon(Icons.favorite))
+          //IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
+          //IconButton(onPressed: (){}, icon: const Icon(Icons.favorite))
         ],
         backgroundColor: Colors.blue[900],
       );
@@ -55,7 +54,7 @@ dynamic getDrawer(BuildContext context){
             color: Colors.blue[900],
           ),
           child: Text(
-            "data",
+            "Mobile Cafe",
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,
@@ -95,20 +94,21 @@ dynamic getDrawer(BuildContext context){
           leading: const Icon(Icons.add_box),
           title: const Text('Orders'),
           hoverColor: Colors.blueAccent,
-          onTap: () {
+          onTap: () async{
+            await Navigator.pushNamed(context, '/orders');
             Navigator.pop(context);
 
           },
         ),
-        ListTile(
-          leading: const Icon(Icons.contact_page),
-          title: const Text('Contact Us'),
-          hoverColor: Colors.blueAccent,
-          onTap: () {
-            Navigator.pop(context);
+        // ListTile(
+        //   leading: const Icon(Icons.contact_page),
+        //   title: const Text('Contact Us'),
+        //   hoverColor: Colors.blueAccent,
+        //   onTap: () {
+        //     Navigator.pop(context);
 
-          },
-        ),
+        //   },
+        // ),
       ],
     ),
   );

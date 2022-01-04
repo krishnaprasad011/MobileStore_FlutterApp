@@ -17,7 +17,7 @@ class _SplashscreenState extends State<Splashscreen> {
     Timer (const Duration(seconds: 3), ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>Home())));
   }
   Widget build(BuildContext context) {
-    var colors2 = const [Color(0xFF400E17), Color(0xFF0F0F5B),];
+    var colors2 = const [Color(0xFFFFFFFF), Color(0xFFFFFFFF),];
     return Scaffold(
       body: Container(
         width: double.infinity,
