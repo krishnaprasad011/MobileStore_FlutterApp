@@ -46,6 +46,61 @@ class AboutPage extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+            child: Text("Technical Information",
+            style: TextStyle(
+                        color: Colors.purpleAccent,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold
+                    ),
+
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+            child: Text("App Version: v1.0.0",
+            style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Open Sans',
+                    ),
+
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+            child: Text("Flutter Version: v2.5.3",
+            style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Open Sans',
+                    ),
+
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+            child: Text("Firestore Version: v3.1.0",
+            style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Open Sans',
+                    ),
+
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+            child: Text("Application Size: 148MB",
+            style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Open Sans',
+                    ),
+
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
             child: Text("Developers",
             style: TextStyle(
                         color: Colors.purpleAccent,
