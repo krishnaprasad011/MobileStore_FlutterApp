@@ -21,7 +21,7 @@ class AboutPage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
             child: Text("About Mobile Cafe",
             style: TextStyle(
-                        color: Colors.purpleAccent,
+                        color: Colors.blue[800],
                         fontSize: 25,
                         fontWeight: FontWeight.bold
                     ),
@@ -48,7 +48,7 @@ class AboutPage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
             child: Text("Technical Information",
             style: TextStyle(
-                        color: Colors.purpleAccent,
+                      color: Colors.blue[800],
                         fontSize: 25,
                         fontWeight: FontWeight.bold
                     ),
@@ -103,7 +103,7 @@ class AboutPage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
             child: Text("Developers",
             style: TextStyle(
-                        color: Colors.purpleAccent,
+                        color: Colors.blue[800],
                         fontSize: 25,
                         fontWeight: FontWeight.bold
                     ),
